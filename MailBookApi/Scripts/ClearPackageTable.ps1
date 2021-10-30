@@ -1,0 +1,1 @@
+Invoke-Expression -Command 'docker exec -it ba57 /opt/mssql-tools/bin/sqlcmd -S . -U sa -P vkiydKN8986 -Q "use MailBookDb; delete from dbo.Packages; select * from dbo.Packages"'

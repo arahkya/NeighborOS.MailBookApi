@@ -1,0 +1,8 @@
+POST https://localhost:5001/api/package HTTP/1.1
+content-type: application/json
+
+{
+    "PackageNumber": "PKG0000001",
+    "ArrivedDate": "2021-10-26",
+    "DeliverCompanyId": "0TyNeisgKSbAFefcLGwvkQ=="
+}
