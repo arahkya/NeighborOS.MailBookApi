@@ -1,1 +1,1 @@
-Invoke-Expression -Command "docker run -p 80:80 --name MailBookApi --network MailBookNetwork -d mailbookapi:latest"
+Invoke-Expression -Command "docker run -p 80:80 --name MailBookApi --network MailBookNetwork -d arahk/neighbor-os-mailbook-api:latest"
