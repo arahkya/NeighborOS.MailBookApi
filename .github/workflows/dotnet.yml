@@ -18,7 +18,7 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Change Work Dir to Code Project
-      run: cd MailBookApi
+      run: cd ../MailBookApi
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
