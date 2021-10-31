@@ -17,9 +17,13 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+    - name: Change Work Dir to Code Project
+      run: cd MailBookApi
     - name: Restore dependencies
-      run: MailBookApi/dotnet restore
+      run: dotnet restore
     - name: Build
-      run: MailBookApi/dotnet build --no-restore
+      run: dotnet build --no-restore
+    - name: Change Work Dir to Test Project
+      run: cd ../MailBookApi.Test
     - name: Test
-      run: MailBookApi.Test/dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal
