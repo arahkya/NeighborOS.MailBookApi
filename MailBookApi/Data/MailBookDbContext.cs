@@ -13,7 +13,7 @@ namespace MailBookApi.Data
 
         public MailBookDbContext(DbContextOptions<MailBookDbContext> options) : base(options)
         {
-
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
