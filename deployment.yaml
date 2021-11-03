@@ -15,41 +15,40 @@ spec:
       containers:
       - name: mailbook-api
         image: arahk/neighbor-os-mailbook-api:latest
-        command: ['sh', '-c', 'echo The app is running! && sleep 3600']
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
         - containerPort: 80
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mailbook-api-depl
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mailbook-api
-  template:
-    metadata:
-      labels:
-        app: mailbook-api
-    spec:
-      containers:
-      - name: mailbook-db
-        image: mrc.microsoft.com/mssql/server:latest
-        env:
-        - name: "ACCEPT_EULA"
-          value: "Y"
-        - name: "SA_PASSWORD"
-          value: "vkiydKN8986"
-        - name: "MSSQL_PID"
-          value: "Express"
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 1433
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: mailbook-api-depl
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: mailbook-api
+#   template:
+#     metadata:
+#       labels:
+#         app: mailbook-api
+#     spec:
+#       containers:
+#       - name: mailbook-db
+#         image: mrc.microsoft.com/mssql/server:latest
+#         env:
+#         - name: "ACCEPT_EULA"
+#           value: "Y"
+#         - name: "SA_PASSWORD"
+#           value: "vkiydKN8986"
+#         - name: "MSSQL_PID"
+#           value: "Express"
+#         resources:
+#           limits:
+#             memory: "128Mi"
+#             cpu: "500m"
+#         ports:
+#         - containerPort: 1433

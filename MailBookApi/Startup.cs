@@ -89,9 +89,10 @@ namespace MailBookApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MailBookApi v1"));
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MailBookApi v1"));
+
 
             // using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             // {

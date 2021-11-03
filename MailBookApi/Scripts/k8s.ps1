@@ -6,3 +6,6 @@ kubectl apply -f ../../deployment.yaml
 
 # delete deployment
 # kubectl delete deployment mailbook-api-depl
+
+# get service that run in k8s such as Node Port (np) -- Example in file nodepod.yaml
+# kubectl get services
