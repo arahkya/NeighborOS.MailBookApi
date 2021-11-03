@@ -1,0 +1,136 @@
+2021-11-03 20:25:20.078 +07:00 [INF] Starting web host
+2021-11-03 20:25:21.434 +07:00 [FTL] Unable to start Kestrel.
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+2021-11-03 20:25:21.499 +07:00 [FTL] Unexpected Web Host Error.
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at MailBookApi.Program.Main(String[] args) in /Users/arrakyambupah/Sources/NeighborOS.MailBookApi/MailBookApi/Program.cs:line 29
+2021-11-03 20:26:10.501 +07:00 [INF] Starting web host
+2021-11-03 20:26:10.822 +07:00 [FTL] Unable to start Kestrel.
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+2021-11-03 20:26:10.838 +07:00 [FTL] Unexpected Web Host Error.
+System.InvalidOperationException: Unable to configure HTTPS endpoint. No server certificate was specified, and the default developer certificate could not be found or is out of date.
+To generate a developer certificate run 'dotnet dev-certs https'. To trust the certificate (Windows and macOS only) run 'dotnet dev-certs https --trust'.
+For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions, Action`1 configureOptions)
+   at Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(ListenOptions listenOptions)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.RunAsync(IHost host, CancellationToken token)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Run(IHost host)
+   at MailBookApi.Program.Main(String[] args) in /Users/arrakyambupah/Sources/NeighborOS.MailBookApi/MailBookApi/Program.cs:line 29
+2021-11-03 20:26:43.441 +07:00 [INF] Starting web host
+2021-11-03 20:26:50.277 +07:00 [INF] Now listening on: https://localhost:5001
+2021-11-03 20:26:50.280 +07:00 [INF] Now listening on: http://localhost:5000
+2021-11-03 20:26:50.281 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-11-03 20:26:50.281 +07:00 [INF] Hosting environment: Development
+2021-11-03 20:26:50.281 +07:00 [INF] Content root path: /Users/arrakyambupah/Sources/NeighborOS.MailBookApi/MailBookApi
+2021-11-03 20:27:10.454 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/ - -
+2021-11-03 20:27:10.489 +07:00 [INF] HTTP GET / responded 307 in 3.6465 ms
+2021-11-03 20:27:10.496 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/ - - - 307 0 - 44.5845ms
+2021-11-03 20:27:15.973 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/ - -
+2021-11-03 20:27:15.996 +07:00 [INF] HTTP GET / responded 404 in 22.4611 ms
+2021-11-03 20:27:15.997 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/ - - - 404 0 - 23.8801ms
+2021-11-03 20:27:21.088 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger - -
+2021-11-03 20:27:21.090 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger - - - 301 0 - 1.3299ms
+2021-11-03 20:27:21.093 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/index.html - -
+2021-11-03 20:27:21.159 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 66.6272ms
+2021-11-03 20:27:21.193 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui.css - -
+2021-11-03 20:27:21.216 +07:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2021-11-03 20:27:21.218 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui.css - - - 200 142933 text/css 25.6990ms
+2021-11-03 20:27:21.219 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui-standalone-preset.js - -
+2021-11-03 20:27:21.223 +07:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2021-11-03 20:27:21.223 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui-standalone-preset.js - - - 200 311804 application/javascript 4.1804ms
+2021-11-03 20:27:21.225 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui-bundle.js - -
+2021-11-03 20:27:21.234 +07:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2021-11-03 20:27:21.235 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui-bundle.js - - - 200 986342 application/javascript 9.5652ms
+2021-11-03 20:27:21.380 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/v1/swagger.json - -
+2021-11-03 20:27:21.402 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/favicon-32x32.png - -
+2021-11-03 20:27:21.402 +07:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2021-11-03 20:27:21.403 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/favicon-32x32.png - - - 200 628 image/png 0.4081ms
+2021-11-03 20:27:21.449 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 69.4524ms
+2021-11-03 20:27:32.133 +07:00 [INF] Application is shutting down...
+2021-11-03 20:28:05.781 +07:00 [INF] Starting web host
+2021-11-03 20:28:06.960 +07:00 [INF] Now listening on: https://localhost:5001
+2021-11-03 20:28:06.963 +07:00 [INF] Now listening on: http://localhost:5000
+2021-11-03 20:28:06.963 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-11-03 20:28:06.963 +07:00 [INF] Hosting environment: Development
+2021-11-03 20:28:06.964 +07:00 [INF] Content root path: /Users/arrakyambupah/Sources/NeighborOS.MailBookApi/MailBookApi
+2021-11-03 20:28:22.219 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/ - -
+2021-11-03 20:28:22.281 +07:00 [INF] HTTP GET / responded 404 in 22.8144 ms
+2021-11-03 20:28:22.293 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/ - - - 404 0 - 76.6304ms
+2021-11-03 20:28:22.382 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico - -
+2021-11-03 20:28:22.383 +07:00 [INF] HTTP GET /favicon.ico responded 404 in 0.0950 ms
+2021-11-03 20:28:22.383 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/favicon.ico - - - 404 0 - 1.2351ms
+2021-11-03 20:28:28.141 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger - -
+2021-11-03 20:28:28.143 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger - - - 301 0 - 1.5049ms
+2021-11-03 20:28:28.163 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/index.html - -
+2021-11-03 20:28:28.225 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 62.0885ms
+2021-11-03 20:28:28.229 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui.css - -
+2021-11-03 20:28:28.403 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui-bundle.js - -
+2021-11-03 20:28:28.423 +07:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2021-11-03 20:28:28.423 +07:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2021-11-03 20:28:28.425 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui.css - - - 200 142933 text/css 195.9489ms
+2021-11-03 20:28:28.425 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui-bundle.js - - - 200 986342 application/javascript 21.9619ms
+2021-11-03 20:28:28.434 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui-standalone-preset.js - -
+2021-11-03 20:28:28.435 +07:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2021-11-03 20:28:28.435 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui-standalone-preset.js - - - 200 311804 application/javascript 1.2099ms
+2021-11-03 20:28:28.579 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/v1/swagger.json - -
+2021-11-03 20:28:28.593 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/favicon-32x32.png - -
+2021-11-03 20:28:28.594 +07:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2021-11-03 20:28:28.594 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/favicon-32x32.png - - - 200 628 image/png 1.0249ms
+2021-11-03 20:28:28.665 +07:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/swagger/favicon-16x16.png - -
+2021-11-03 20:28:28.665 +07:00 [INF] Sending file. Request path: '/favicon-16x16.png'. Physical path: 'N/A'
+2021-11-03 20:28:28.665 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/favicon-16x16.png - - - 200 665 image/png 0.4533ms
+2021-11-03 20:28:28.703 +07:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 123.5030ms
+2021-11-03 20:28:39.301 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger - -
+2021-11-03 20:28:39.302 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger - - - 301 0 - 0.3929ms
+2021-11-03 20:28:39.304 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html - -
+2021-11-03 20:28:39.304 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/index.html - - - 200 - text/html;charset=utf-8 0.5387ms
+2021-11-03 20:28:39.367 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui.css - -
+2021-11-03 20:28:39.392 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-bundle.js - -
+2021-11-03 20:28:39.392 +07:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2021-11-03 20:28:39.463 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui.css - - - 200 142933 text/css 49.3350ms
+2021-11-03 20:28:39.485 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-standalone-preset.js - -
+2021-11-03 20:28:39.554 +07:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2021-11-03 20:28:39.579 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-standalone-preset.js - - - 200 311804 application/javascript 94.1869ms
+2021-11-03 20:28:39.583 +07:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2021-11-03 20:28:39.583 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-bundle.js - - - 200 986342 application/javascript 191.0278ms
+2021-11-03 20:28:39.717 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json - -
+2021-11-03 20:28:39.719 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 1.5759ms
+2021-11-03 20:28:39.774 +07:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/favicon-32x32.png - -
+2021-11-03 20:28:39.774 +07:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2021-11-03 20:28:39.774 +07:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/swagger/favicon-32x32.png - - - 200 628 image/png 0.3427ms
