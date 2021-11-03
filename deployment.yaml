@@ -15,6 +15,7 @@ spec:
       containers:
       - name: mailbook-api
         image: arahk/neighbor-os-mailbook-api:latest
+        imagePullPolicy: "Always"
         resources:
           limits:
             memory: "128Mi"

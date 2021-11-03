@@ -9,3 +9,9 @@ kubectl apply -f ../../deployment.yaml
 
 # get service that run in k8s such as Node Port (np) -- Example in file nodepod.yaml
 # kubectl get services
+
+# restart deployment and also pods and container within
+# kubectl rollout restart deployment mailbook-api-depl
+
+# References
+# https://www.youtube.com/watch?v=DgVjEo3OGBI
