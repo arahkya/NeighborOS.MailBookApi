@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mailbook-api-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mailbook-db
+  template:
+    metadata:
+      labels:
+        app: mailbook-db
+    spec:
+      containers:
+      - name: mailbook-db
+        image: mrc.microsoft.com/mssql/server:latest
+        env:
+        - name: "ACCEPT_EULA"
+          value: "Y"
+        - name: "SA_PASSWORD"
+          value: "vkiydKN8986"
+        - name: "MSSQL_PID"
+          value: "Express"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 1433
