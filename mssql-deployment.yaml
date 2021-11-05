@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mailbook-api-depl
+  name: mailbook-db-depl
 spec:
   replicas: 1
   selector:
@@ -28,3 +28,16 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 1433
+---
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: mailbook-db-depl
+spec:
+  type: ClusterIP
+  selector:    
+      app: mailbook-db
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433
