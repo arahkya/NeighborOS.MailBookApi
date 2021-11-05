@@ -14,29 +14,49 @@ spec:
     spec:
       containers:
       - name: mailbook-db
-        image: mrc.microsoft.com/mssql/server:latest
+        image: mcr.microsoft.com/mssql/server:latest
         env:
         - name: "ACCEPT_EULA"
           value: "Y"
         - name: "SA_PASSWORD"
-          value: "vkiydKN8986"
+          valueFrom: 
+            secretKeyRef:
+              name: mailbook-db-secret
+              key: SA_PASSWORD
         - name: "MSSQL_PID"
           value: "Express"
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        volumeMounts:
+          - mountPath: /var/opt/mssql/data
+            name: mailbook-db-volume
         ports:
         - containerPort: 1433
+      volumes:
+      - name: mailbook-db-volume
+        persistentVolumeClaim:
+          claimName: mailbook-db-pvc
 ---
-apiVersion: apps/v1
+apiVersion: v1
 kind: Service
 metadata:
-  name: mailbook-db-depl
+  name: mailbook-db-clusterip-srv
 spec:
   type: ClusterIP
   selector:    
       app: mailbook-db
+  ports:
+    - name: mailbook-db
+      protocol: TCP
+      port: 1433
+      targetPort: 1433
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mailbook-db-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: mailbook-db
   ports:
     - protocol: TCP
       port: 1433

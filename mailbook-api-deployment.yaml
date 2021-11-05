@@ -22,3 +22,17 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mailbook-api-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:    
+      app: mailbook-api
+  ports:
+    - name: mailbook-api
+      protocol: TCP
+      port: 80
+      targetPort: 80
