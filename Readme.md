@@ -1,19 +1,38 @@
 # NeighborOS
 
-## Comamnds to bring up api
+## Comamnds to install api
 1. To install mailbook api  
-`kubectl apply -f ./mailbook-api-deployment.yml`
+`kubectl apply -f ./mailbook-api-deployment.yaml`
 2. To install persistant volume claim  
 `kubectl apply -f ./mssql-pvc.yaml`
 3. To setup secret that use for mssql installation  
 `kubectl create secret generic mailbook-db-secret --from-literal=SA_PASSWORD="vkiydKN8986"`
 4. To install mssql  
 `kubectl apply -f ./mssql-deployment.yaml`
-5. To update database migration  
+5. To install ingress  
+`kubectl apply -f ./ingress-deployment.yaml`
+6. To update database migration  
 `dotnet-ef database update`
 
 *Steps 1-4 must run project at k8s folder*  
 *Step 5 must run under MailBookApi folder*
+
+## Command to uninstall api
+1. To remove cluster ip for api  
+`kubectl delete service mailbook-api-clusterip-srv`
+2. To remove cluster ip for db  
+`kubectl delete service mailbook-db-clusterip-srv`
+3. To uninstall mailbook api  
+`kubectl delete deployment mailbook-api-depl`
+4. To uninstall mailbook db  
+`kubectl delete deployment mailbook-db-depl`
+5. To uninstall persistant volume claim  
+`kubectl delete PersistentVolumeClaim mailbook-db-pvc`
+6. To remove secret that use for mssql installation  
+`kubectl delete secret mailbook-db-secret`
+7. To remove ingress  
+`kubectl delete ingress ingress-srv`
+
 
 ## Git
 ### Clean Cache
