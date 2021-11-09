@@ -94,11 +94,11 @@ namespace MailBookApi
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MailBookApi v1"));
 
 
-            // using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            // {
-            //     var mailbookDbContext = (MailBookDbContext)serviceScope.ServiceProvider.GetService<MailBookDbContext>();
-            //     mailbookDbContext.Database.EnsureCreated();
-            // }
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var mailbookDbContext = (MailBookDbContext)serviceScope.ServiceProvider.GetService<MailBookDbContext>();
+                mailbookDbContext.Database.EnsureCreated();
+            }
 
             app.UseSerilogRequestLogging();
 
