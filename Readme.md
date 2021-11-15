@@ -11,8 +11,6 @@
 `kubectl apply -f ./mssql-deployment.yaml`
 5. To install ingress  
 `kubectl apply -f ./ingress-deployment.yaml`
-6. To update database migration  
-`dotnet-ef database update`
 
 *Steps 1-4 must run project at k8s folder*  
 *Step 5 must run under MailBookApi folder*
