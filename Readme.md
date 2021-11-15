@@ -72,5 +72,10 @@ After modified .gitignore file. You need to cleanup cache in git to make .gitign
 
 ---
 
+### Update Certificate in linux
+`RUN update-ca-certificates`
+
+---
+
 ## References  
 [.NET Microservices – Full Course by Les Jackson](https://www.youtube.com/watch?v=DgVjEo3OGBI)

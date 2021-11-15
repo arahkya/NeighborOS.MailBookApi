@@ -5,6 +5,10 @@ COPY . .
 RUN dotnet publish -c Release -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS Runtime
+ENV ASPNETCORE_ENVIRONMENT=Release
+COPY ../ssl/neighboros.in.th.pfx /usr/local/share/ca-certificates/neighboros.in.th.pfx
+RUN update-ca-certificates
+
 WORKDIR /app
 COPY --from=BUILD /app .
 

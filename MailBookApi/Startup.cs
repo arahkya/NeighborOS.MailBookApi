@@ -28,23 +28,31 @@ namespace MailBookApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            WebHostEnvironment = env;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment WebHostEnvironment { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MailBookDbContext>(optionBuilder =>
-                        {
-                            var connectionString = Configuration.GetSection("ConnectionStrings:Default").Value;
-
-                            Log.Logger.Information("Use Connection String : {0}", connectionString);
-
-                            optionBuilder.UseSqlServer(connectionString);
-                        });
+            {
+                if (WebHostEnvironment.IsDevelopment())
+                {
+                    optionBuilder.UseInMemoryDatabase("mailbookapi");
+                }
+                else
+                {
+                    var connectionString = Configuration.GetSection("ConnectionStrings:Default").Value;
+                    Log.Logger.Information("Use Connection String : {0}", connectionString);
+                    optionBuilder.UseSqlServer(connectionString);
+                }
+            });
 
             services.AddTransient<EncryptResolver>();
             services.AddTransient<IdEncryptResolver>();
@@ -102,7 +110,7 @@ namespace MailBookApi
 
             app.UseSerilogRequestLogging();
 
-            // app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
