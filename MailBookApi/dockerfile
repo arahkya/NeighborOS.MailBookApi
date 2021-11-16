@@ -1,15 +1,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS BUILD
 WORKDIR /source/MailBookAPI
 
-COPY . .
+COPY ./MailBookApi .
 RUN dotnet publish -c Release -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS Runtime
-ENV ASPNETCORE_ENVIRONMENT=Release
-COPY ../ssl/neighboros.in.th.pfx /usr/local/share/ca-certificates/neighboros.in.th.pfx
-RUN update-ca-certificates
-
 WORKDIR /app
 COPY --from=BUILD /app .
+
+ENV ASPNETCORE_ENVIRONMENT=Release
 
 ENTRYPOINT [ "dotnet", "MailBookApi.dll", "--ef-migrate" ]

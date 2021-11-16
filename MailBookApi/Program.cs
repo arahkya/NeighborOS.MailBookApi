@@ -45,37 +45,11 @@ namespace MailBookApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-                    var isDevelopment = environment == Environments.Development;
-                    var appsettingsFile = "appsettings.json";
-
-                    if (isDevelopment)
-                    {
-                        appsettingsFile = "appsettings.Development.json";
-                    }
-
-                    var configuration = new ConfigurationBuilder()
-                        .AddJsonFile(appsettingsFile)
-                        .Build();
-
-                    var certificatePath = configuration.GetSection("Certificates:Default").Value.ToString();
-
                     webBuilder
                         .UseSerilog()
                         .ConfigureKestrel(listenOption =>
                         {
-                            listenOption.ListenAnyIP(8900, opt =>
-                            {
-                                var certPfxFileBytes = File.ReadAllBytes(certificatePath);
-                                var securePfxPasswordStr = new SecureString();
-                                foreach (var passwordChar in "vkiydKN8986".ToCharArray())
-                                {
-                                    securePfxPasswordStr.AppendChar(passwordChar);
-                                }
-
-                                var cert = new X509Certificate2(certPfxFileBytes, securePfxPasswordStr);
-                                opt.UseHttps(cert);
-                            });
+                            listenOption.ListenAnyIP(80);
                         })
                         .UseStartup<Startup>();
                 });

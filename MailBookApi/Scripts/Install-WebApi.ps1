@@ -1,0 +1,6 @@
+Invoke-Expression -Command "kubectl apply -f ./mailbook-api-deployment.yaml"
+Invoke-Expression -Command "kubectl apply -f ./mssql-pvc.yaml"
+Invoke-Expression -Command "kubectl create secret generic mailbook-db-secret --from-literal=SA_PASSWORD=""vkiydKN8986"""
+Invoke-Expression -Command "kubectl create secret tls mailbook-api-tls --key=../ssl/neighboros.in.th.key --cert=../ssl/neighboros.in.th.crt"
+Invoke-Expression -Command "kubectl apply -f ./mssql-deployment.yaml"
+Invoke-Expression -Command "kubectl apply -f ./ingress-deployment.yaml"

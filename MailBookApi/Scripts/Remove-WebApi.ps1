@@ -1,0 +1,8 @@
+Invoke-Expression -Command "kubectl delete service mailbook-api-clusterip-srv"
+Invoke-Expression -Command "kubectl delete service mailbook-db-clusterip-srv"
+Invoke-Expression -Command "kubectl delete deployment mailbook-api-depl"
+Invoke-Expression -Command "kubectl delete deployment mailbook-db-depl"
+Invoke-Expression -Command "kubectl delete PersistentVolumeClaim mailbook-db-pvc"
+Invoke-Expression -Command "kubectl delete secret mailbook-db-secret"
+Invoke-Expression -Command "kubectl delete secret mailbook-api-tls"
+Invoke-Expression -Command "kubectl delete ingress ingress-srv"

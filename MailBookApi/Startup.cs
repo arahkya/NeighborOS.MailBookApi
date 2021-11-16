@@ -110,8 +110,6 @@ namespace MailBookApi
 
             app.UseSerilogRequestLogging();
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthorization();
