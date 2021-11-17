@@ -77,5 +77,9 @@ After modified .gitignore file. You need to cleanup cache in git to make .gitign
 
 ---
 
+### Generate Cert files ###
+`openssl req -new -x509 -days 365 -out neighboros.in.th.crt -key .\neighboros.in.th.key -config .\neighboros.in.th.conf`
+`openssl pkcs12 -export -out neighboros.in.th.pfx -inkey .\neighboros.in.th.key -in .\neighboros.in.th.crt -name neighboros.in.th`
+
 ## References  
 [.NET Microservices – Full Course by Les Jackson](https://www.youtube.com/watch?v=DgVjEo3OGBI)
