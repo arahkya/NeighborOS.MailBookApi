@@ -101,7 +101,6 @@ namespace MailBookApi
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MailBookApi v1"));
 
-
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var mailbookDbContext = (MailBookDbContext)serviceScope.ServiceProvider.GetService<MailBookDbContext>();

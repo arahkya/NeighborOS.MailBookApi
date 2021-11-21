@@ -46,11 +46,21 @@ namespace MailBookApi
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
-                        .UseSerilog()
-                        .ConfigureKestrel(listenOption =>
-                        {
-                            listenOption.ListenAnyIP(80);
-                        })
+                        .UseSerilog();
+
+                    var aspnetcoreEnvironment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                    var isReleaseMode = aspnetcoreEnvironment == Environments.Production;
+
+                    if (isReleaseMode)
+                    {
+                        webBuilder
+                            .ConfigureKestrel(listenOption =>
+                            {
+                                listenOption.ListenAnyIP(80);
+                            });
+                    }
+
+                    webBuilder
                         .UseStartup<Startup>();
                 });
     }
