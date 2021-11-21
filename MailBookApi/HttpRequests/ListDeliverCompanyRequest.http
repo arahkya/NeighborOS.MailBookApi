@@ -1,2 +1,4 @@
 GET https://localhost:5001/api/deliver-company HTTP/1.1
 content-type: application/json
+
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.IEE_4ByzSZLH8k_4YOagb_mjTzd5dIug8yCyZoeIeQw

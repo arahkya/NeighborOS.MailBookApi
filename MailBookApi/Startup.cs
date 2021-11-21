@@ -13,16 +13,20 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using MailBookApi.Data.Entities;
 using MailBookApi.Models;
 using MailBookApi.Repos;
 using Serilog;
 using MailBookApi.AutoMappers;
 using MailBookApi.AutoMappers.Resolves;
+using MailBookApi.Extensions.Authorize;
 using AutoMapper;
 using System.Security.Cryptography;
 using System.Text;
 using MailBookApi.Configure;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MailBookApi
 {
@@ -84,6 +88,30 @@ namespace MailBookApi
 
             services.AddScoped<IMailBookRepository, MailBookRepository>();
 
+            services.AddSingleton<IAuthorizationHandler, DefaultAuthorizationHandler>();
+
+            services.AddAuthorization(authorizeConfig =>
+            {
+                authorizeConfig.AddPolicy("Default", authorizePolicyBuilder =>
+                {
+                    authorizePolicyBuilder.AddRequirements(new DefaultAuthorizationRequirement());                    
+                });
+            });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(jwtBearerOptions =>
+                {
+                    var issuerKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("vkiydKN8986"));
+                    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = issuerKey,
+                        ValidateActor = false,
+                        ValidateAudience = false,
+                        ValidateIssuer = false,
+                        ClockSkew = TimeSpan.Zero
+                    };
+                });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -106,6 +134,9 @@ namespace MailBookApi
                 var mailbookDbContext = (MailBookDbContext)serviceScope.ServiceProvider.GetService<MailBookDbContext>();
                 mailbookDbContext.Database.EnsureCreated();
             }
+
+            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseSerilogRequestLogging();
 
