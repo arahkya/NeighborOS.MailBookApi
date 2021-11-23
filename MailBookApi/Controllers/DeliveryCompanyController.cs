@@ -2,13 +2,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MailBookApi.Models;
 using MailBookApi.Repos;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MailBookApi.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Default")]
+    [Authorize]
     [Route("/api/deliver-company")]
     [ApiController]
     public class DeliverCompanryController : Controller

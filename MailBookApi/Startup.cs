@@ -1,32 +1,21 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MailBookApi.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using MailBookApi.Data.Entities;
-using MailBookApi.Models;
 using MailBookApi.Repos;
 using Serilog;
 using MailBookApi.AutoMappers;
 using MailBookApi.AutoMappers.Resolves;
-using MailBookApi.Extensions.Authorize;
-using AutoMapper;
-using System.Security.Cryptography;
 using System.Text;
 using MailBookApi.Configure;
-using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace MailBookApi
 {
@@ -88,29 +77,40 @@ namespace MailBookApi
 
             services.AddScoped<IMailBookRepository, MailBookRepository>();
 
-            services.AddSingleton<IAuthorizationHandler, DefaultAuthorizationHandler>();
+            services.AddAuthentication(authenticationOptions =>
+            {
+                authenticationOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                authenticationOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                authenticationOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, jwtBearerOptions =>
+                {                    
+                    jwtBearerOptions.SaveToken = true;
 
+                    var issuerKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("NTNv7j0TuYARvmNMmWXo6fKvM4o6nv/aUi9ryX38ZH+L1bkrnD1ObOQ8JAUmHCBq7Iy7otZcyAagBLHVKvvYaIpmMuxmARQ97jUVG16Jkpkp1wXOPsrF9zwew6TpczyHkHgX5EuLg2MeBuiT/qJACs1J0apruOOJCg/gOtkjB4c="));
+
+                    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        NameClaimType = ClaimTypes.NameIdentifier,
+                        ValidateAudience = true,
+                        ValidateIssuer = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = issuerKey,
+                        ValidIssuer = "https://auth.neighboros.in.th",
+                        ValidAudience = "mailbook.neighboros.in.th",
+                        RequireExpirationTime = true
+                    };                    
+                });
+            
             services.AddAuthorization(authorizeConfig =>
             {
                 authorizeConfig.AddPolicy("Default", authorizePolicyBuilder =>
-                {
-                    authorizePolicyBuilder.AddRequirements(new DefaultAuthorizationRequirement());                    
+                {                    
+                    authorizePolicyBuilder.RequireAuthenticatedUser();
+                    authorizePolicyBuilder.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
                 });
             });
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(jwtBearerOptions =>
-                {
-                    var issuerKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("vkiydKN8986"));
-                    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = issuerKey,
-                        ValidateActor = false,
-                        ValidateAudience = false,
-                        ValidateIssuer = false,
-                        ClockSkew = TimeSpan.Zero
-                    };
-                });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -135,13 +135,10 @@ namespace MailBookApi
                 mailbookDbContext.Database.EnsureCreated();
             }
 
-            app.UseAuthorization();
-            app.UseAuthentication();
-
             app.UseSerilogRequestLogging();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
