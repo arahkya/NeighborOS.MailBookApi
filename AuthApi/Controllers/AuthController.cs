@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
-namespace MailBookApi.Controllers
+namespace AuthApi.Controllers
 {
     [Route("/api/auth")]
     [ApiController]
