@@ -3,8 +3,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-
+using AuthApi.Configurations;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace AuthApi.Controllers
@@ -13,10 +14,17 @@ namespace AuthApi.Controllers
     [ApiController]
     public class AuthController : Controller
     {
+        private JwtConfigure _jwtConfigure;
+
+        public AuthController(IOptions<JwtConfigure> jwtTokenConfigOpt)
+        {
+            _jwtConfigure = jwtTokenConfigOpt.Value;
+        }
+
         [HttpGet]
         public string GetToken()
         {
-            var issuerKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("NTNv7j0TuYARvmNMmWXo6fKvM4o6nv/aUi9ryX38ZH+L1bkrnD1ObOQ8JAUmHCBq7Iy7otZcyAagBLHVKvvYaIpmMuxmARQ97jUVG16Jkpkp1wXOPsrF9zwew6TpczyHkHgX5EuLg2MeBuiT/qJACs1J0apruOOJCg/gOtkjB4c="));
+            var issuerKey = new SymmetricSecurityKey(_jwtConfigure.KeyBytes);
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var securityTokenDescriptor = new SecurityTokenDescriptor();
 
@@ -25,7 +33,7 @@ namespace AuthApi.Controllers
                 new Claim(ClaimTypes.NameIdentifier, "Arahk"),
                 new Claim(JwtRegisteredClaimNames.Aud, "mailbook.neighboros.in.th"),
                 new Claim(JwtRegisteredClaimNames.Sub, "Arahk"),
-                new Claim(JwtRegisteredClaimNames.Iss, "https://auth.neighboros.in.th"),
+                new Claim(JwtRegisteredClaimNames.Iss, _jwtConfigure.Issuer),
                 new Claim(JwtRegisteredClaimNames.Email, "arahk@outlook.com")
             });
 
