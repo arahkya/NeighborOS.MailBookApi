@@ -1,6 +1,7 @@
 using System;
 using MailBookApi.Data;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Identity.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -77,40 +78,12 @@ namespace MailBookApi
 
             services.AddScoped<IMailBookRepository, MailBookRepository>();
 
-            services.AddAuthentication(authenticationOptions =>
+            services.AddAuthentication(p =>
             {
-                authenticationOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                authenticationOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                authenticationOptions.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                p.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                p.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, jwtBearerOptions =>
-                {                    
-                    jwtBearerOptions.SaveToken = true;
-
-                    var issuerKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("NTNv7j0TuYARvmNMmWXo6fKvM4o6nv/aUi9ryX38ZH+L1bkrnD1ObOQ8JAUmHCBq7Iy7otZcyAagBLHVKvvYaIpmMuxmARQ97jUVG16Jkpkp1wXOPsrF9zwew6TpczyHkHgX5EuLg2MeBuiT/qJACs1J0apruOOJCg/gOtkjB4c="));
-
-                    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        NameClaimType = ClaimTypes.NameIdentifier,
-                        ValidateAudience = true,
-                        ValidateIssuer = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = issuerKey,
-                        ValidIssuer = "https://auth.neighboros.in.th",
-                        ValidAudience = "mailbook.neighboros.in.th",
-                        RequireExpirationTime = true
-                    };                    
-                });
-            
-            services.AddAuthorization(authorizeConfig =>
-            {
-                authorizeConfig.AddPolicy("Default", authorizePolicyBuilder =>
-                {                    
-                    authorizePolicyBuilder.RequireAuthenticatedUser();
-                    authorizePolicyBuilder.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
-                });
-            });
+            .AddMicrosoftIdentityWebApi(Configuration, "AzureAd");
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -138,6 +111,7 @@ namespace MailBookApi
             app.UseSerilogRequestLogging();
 
             app.UseRouting();
+
             app.UseAuthentication();
             app.UseAuthorization();
 

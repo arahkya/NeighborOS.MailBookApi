@@ -4,6 +4,7 @@ using MailBookApi.Models;
 using MailBookApi.Repos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Web.Resource;
 
 namespace MailBookApi.Controllers
 {
@@ -22,6 +23,8 @@ namespace MailBookApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<DeliverCompanyModel>> GetAsync()
         {
+            HttpContext.VerifyUserHasAnyAcceptedScope("MailBook.Read");
+
             var models = await _repo.ListDeliverCompanyAsync();
 
             return models;
